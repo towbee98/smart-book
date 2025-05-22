@@ -1,0 +1,28 @@
+{
+  "stations": [
+    {
+      "id": "1",
+      "name": "Downtown Station",
+      "carTypes": ["sedan", "suv"],
+      "services": ["wash", "detailing"]
+    },
+    {
+      "id": "2",
+      "name": "Uptown Station",
+      "carTypes": ["sedan", "truck"],
+      "services": ["wash"]
+    },
+    {
+      "id": "3",
+      "name": "Westside Station",
+      "carTypes": ["suv", "truck"],
+      "services": ["wash", "detailing"]
+    },
+    {
+      "id": "4",
+      "name": "Eastside Station",
+      "carTypes": ["sedan", "suv", "truck"],
+      "services": ["wash"]
+    }
+  ]
+} 
