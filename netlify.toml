@@ -1,14 +1,19 @@
 [build]
-  command = "npm install --force && npm run build"
-  publish = "dist"  # Change to "dist" if you're using something like Vite or another output dir
+  command = "npm run build"
+  publish = "dist"
 
 [dev]
-  command = "npm start"
-  port = 3000
-  publish = "public"
+  command = "npm run dev"
+  port = 8888
+  targetPort = 5173
 
 [environment]
-  NODE_VERSION = "20" # or match your local Node version (16/18 LTS)
+  NODE_VERSION = "20"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
 
 [[redirects]]
   from = "/*"

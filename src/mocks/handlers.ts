@@ -34,8 +34,8 @@ export const handlers = [
   }),
 
   http.get('/api/stations/:id/time-slots', ({ params }) => {
-    const { id } = params
-    const station = stations.find(s => s.id === id)
+    const stationId = params.id as string
+    const station = stations.find(s => s.id === stationId)
     
     if (!station) {
       return new HttpResponse(null, {
@@ -50,7 +50,8 @@ export const handlers = [
       date.setDate(date.getDate() + dayIndex)
       
       return Array.from({ length: 8 }, (_, slotIndex) => ({
-        id: `${id}-${dayIndex}-${slotIndex}`,
+        id: `${stationId}-${dayIndex}-${slotIndex}`,
+        stationId,
         startTime: `${date.toISOString().split('T')[0]}T${9 + slotIndex}:00:00`,
         endTime: `${date.toISOString().split('T')[0]}T${10 + slotIndex}:00:00`,
         isAvailable: Math.random() > 0.3, // 70% chance of being available

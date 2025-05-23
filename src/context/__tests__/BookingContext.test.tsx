@@ -21,6 +21,7 @@ function TestComponent() {
   }
   const mockTimeSlot: TimeSlot = {
     id: '1',
+    stationId: '1',
     startTime: '2024-03-20T10:00:00',
     endTime: '2024-03-20T11:00:00',
     isAvailable: true,
