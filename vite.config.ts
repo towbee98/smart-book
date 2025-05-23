@@ -9,4 +9,7 @@ export default defineConfig({
       'msw/node': 'msw/node/index.js',
     },
   },
+  build: {
+    outDir: 'dist',
+  },
 })
