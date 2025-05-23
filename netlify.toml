@@ -1,3 +1,14 @@
 [build]
   command = "npm install --legacy-peer-deps && npm run build"
-  publish = "build"
+  publish = "dist"  # Change to "dist" if you're using something like Vite or another output dir
+
+[dev]
+  command = "npm start"
+  port = 3000
+  publish = "public"
+
+[environment]
+  NODE_VERSION = "20" # or match your local Node version (16/18 LTS)
+
+[[plugins]]
+  package = "@netlify/plugin-react"
