@@ -1,164 +1,143 @@
 # Smart Booking System
 
-A modern, user-friendly booking system for vehicle services built with React and TypeScript.
+A modern web application for booking car service appointments. Built with React, TypeScript, and Tailwind CSS.
 
 ## Features
 
-- **Multi-step Booking Process**
-  - Vehicle Type Selection
-  - Service Selection
-  - Station Selection
-  - Time Slot Booking
-- **Responsive Design**
-  - Mobile-first approach
-  - Clean and intuitive interface
-  - Smooth animations and transitions
-- **Real-time Availability**
-  - Dynamic time slot management
-  - Station capacity tracking
-  - Service-specific scheduling
+- 🚗 Vehicle type selection
+- 🔧 Service type selection
+- 📍 Station selection with filtering
+- ⏰ Time slot booking
+- 📱 Responsive design
+- 🎨 Modern UI with animations
 
-## Design Choices
+## Tech Stack
 
-### UI Components
-
-1. **Button Component**
-   - Variants: primary (white/black), secondary (black/white), success, danger
-   - Consistent styling with hover states
-   - Support for loading states and disabled conditions
-   - Responsive sizing (sm, md, lg)
-
-2. **EmptyState Component**
-   - Clear messaging for empty states
-   - Customizable icons and actions
-   - Consistent styling across the application
-
-3. **Loading States**
-   - Skeleton loaders for content
-   - Spinner for button loading states
-   - Smooth transitions between states
-
-### Color Scheme
-
-- **Primary Colors**
-  - Black and White for buttons (selected/unselected states)
-  - Blue accents for interactive elements
-  - Gray scales for text hierarchy
-
-- **Text Colors**
-  - Black for primary headings and important information
-  - Gray-600 for secondary text
-  - Blue for interactive elements and prices
-
-### State Management
-
-- **Context-based State Management**
-  - Centralized booking state
-  - Clear action types and reducers
-  - Predictable state updates
-
-### Component Architecture
-
-1. **BookingPage**
-   - Main container component
-   - Manages the booking flow
-   - Handles success/error states
-
-2. **Selector Components**
-   - VehicleSelector
-   - ServiceSelector
-   - StationSelector
-   - TimeSlotSelector
-   - Each with consistent styling and behavior
-
-3. **Success Component**
-   - Clear confirmation message
-   - Detailed booking summary
-   - Option to start new booking
-
-## Technical Decisions
-
-1. **TypeScript**
-   - Strong typing for better development experience
-   - Interface definitions for all data structures
-   - Type safety for API responses
-
-2. **Tailwind CSS**
-   - Utility-first approach
-   - Consistent spacing and sizing
-   - Responsive design utilities
-
-3. **Component Structure**
-   - Reusable components
-   - Clear separation of concerns
-   - Consistent prop interfaces
-
-4. **Error Handling**
-   - Graceful error states
-   - User-friendly error messages
-   - Retry mechanisms
+- **Frontend**: React 19, TypeScript, Tailwind CSS
+- **State Management**: React Context
+- **API Mocking**: json-server
+- **Build Tool**: Vite
+- **Testing**: Jest, React Testing Library
+- **Deployment**: Netlify
 
 ## Getting Started
 
-1. Clone the repository
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Start the development server:
-   ```bash
-   npm run dev
-   ```
+### Prerequisites
 
-## Project Structure
+- Node.js (v20 or later)
+- npm (v9 or later)
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd smart-booking
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Start the development servers:
+
+In one terminal:
+```bash
+npm run dev
+```
+
+In another terminal:
+```bash
+npm run mock-api
+```
+
+The application will be available at:
+- Frontend: http://localhost:5173
+- API: http://localhost:3000
+
+## Development
+
+### Project Structure
 
 ```
 smart-booking/
 ├── src/
-│   ├── components/
-│   │   ├── Button.tsx
-│   │   ├── EmptyState.tsx
-│   │   ├── Loader.tsx
-│   │   ├── Skeleton.tsx
-│   │   ├── VehicleSelector.tsx
-│   │   ├── ServiceSelector.tsx
-│   │   ├── StationSelector.tsx
-│   │   ├── TimeSlotSelector.tsx
-│   │   └── BookingSuccess.tsx
-│   ├── context/
-│   │   └── BookingContext.tsx
-│   ├── hooks/
-│   │   └── useStations.ts
-│   ├── services/
-│   │   ├── stationService.ts
-│   │   └── slotService.ts
-│   ├── types/
-│   │   └── index.ts
-│   └── pages/
-│       └── BookingPage.tsx
+│   ├── components/     # React components
+│   ├── context/       # React Context providers
+│   ├── services/      # API services
+│   ├── types/         # TypeScript types
+│   ├── hooks/         # Custom React hooks
+│   └── mock/          # Mock data and API setup
+├── public/            # Static assets
+├── functions/         # Netlify serverless functions
+└── db.json           # Mock database
 ```
 
-## Future Improvements
+### Available Scripts
 
-1. **Enhanced Error Handling**
-   - More detailed error messages
-   - Better error recovery options
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run test` - Run tests
+- `npm run coverage` - Run tests with coverage
+- `npm run mock-api` - Start json-server
+- `npm run lint` - Run ESLint
 
-2. **Performance Optimizations**
-   - Code splitting
-   - Lazy loading of components
-   - Memoization of expensive computations
+## API Endpoints
 
-3. **Additional Features**
-   - User authentication
-   - Booking history
-   - Service reviews and ratings
-   - Payment integration
+The application uses json-server for API mocking. Available endpoints:
+
+- `GET /api/stations` - Get all stations
+- `GET /api/timeSlots` - Get all time slots
+- `GET /api/timeSlots/:stationId` - Get time slots for a specific station
+
+## Deployment
+
+The application is configured for deployment on Netlify. The deployment process:
+
+1. Build the frontend:
+```bash
+npm run build
+```
+
+2. Deploy to Netlify:
+   - Connect your repository to Netlify
+   - Set build command: `npm run build`
+   - Set publish directory: `dist`
+
+The deployment will:
+- Build the React application
+- Deploy the frontend to Netlify's CDN
+- Set up serverless functions for the API
+- Configure redirects for client-side routing
+
+## Design Choices
+
+### UI Components
+- Black and white button color scheme for selected/unselected states
+- Clear text hierarchy with different sizes and weights
+- Responsive grid layouts for different screen sizes
+- Loading states and error handling with appropriate UI feedback
+
+### State Management
+- React Context for global state management
+- Separate contexts for different features
+- Type-safe actions and state updates
+
+### API Structure
+- RESTful API design
+- Consistent response formats
+- Error handling with appropriate status codes
 
 ## Contributing
 
 1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a new Pull Request 
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details. 
