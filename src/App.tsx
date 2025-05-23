@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useBooking } from './context/BookingContext'
 import { BookingPage } from './pages/BookingPage'
+import { API_ENDPOINTS } from './config/env'
 import './App.css'
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
 
   useEffect(() => {
     console.log('Fetching stations...')
-    fetch('/api/stations')
+    fetch(API_ENDPOINTS.stations)
       .then(res => {
         console.log('Response received:', res)
         return res.json()

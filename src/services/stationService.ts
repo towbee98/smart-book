@@ -1,4 +1,5 @@
 import type { Station, CarType, Service } from '../types'
+import { API_ENDPOINTS } from '../config/env'
 
 /**
  * Filters stations based on car type and service
@@ -29,9 +30,10 @@ export async function getFilteredStations(
   service: Service
 ): Promise<Station[]> {
   try {
-    const response = await fetch('/api/stations')
+    const response = await fetch(API_ENDPOINTS.stations)
     
     const stations: Station[] = await response.json()
+    console.log('Stations:', stations)
     return filterStations(stations, carType, service)
   } catch (error) {
     console.error('Error fetching stations:', error)
