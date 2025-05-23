@@ -53,8 +53,8 @@ npm run mock-api
 ```
 
 The application will be available at:
-- Frontend: http://localhost:5173
-- API: http://localhost:3000
+- Frontend: https://smart-booking-p.netlify.app/
+- API: https://smart-booking-p.netlify.app/.netlify/functions/
 
 ## Development
 
@@ -88,9 +88,9 @@ smart-booking/
 
 The application uses json-server for API mocking. Available endpoints:
 
-- `GET /api/stations` - Get all stations
-- `GET /api/timeSlots` - Get all time slots
-- `GET /api/timeSlots/:stationId` - Get time slots for a specific station
+- `GET /stations` - Get all stations
+- `GET /timeSlots` - Get all time slots
+- `GET /timeSlots/:stationId` - Get time slots for a specific station
 
 ## Deployment
 
