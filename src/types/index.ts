@@ -1,11 +1,20 @@
 export type CarType = 'sedan' | 'suv' | 'truck'
 export type Service = 'wash' | 'detailing'
 
+export interface Vehicle {
+  id: string
+  type: CarType
+  model: string
+  licensePlate: string
+}
+
 export interface Station {
   id: string
   name: string
   carTypes: CarType[]
   services: Service[]
+  location: string
+  rating: number
 }
 
 export interface TimeSlot {
@@ -14,4 +23,5 @@ export interface TimeSlot {
   startTime: string
   endTime: string
   isAvailable: boolean
+  price: number
 } 

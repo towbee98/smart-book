@@ -4,25 +4,33 @@
       "id": "1",
       "name": "Downtown Station",
       "carTypes": ["sedan", "suv"],
-      "services": ["wash", "detailing"]
+      "services": ["wash", "detailing"],
+      "location": "123 Main St",
+      "rating": 4.5
     },
     {
       "id": "2",
       "name": "Uptown Station",
       "carTypes": ["sedan", "truck"],
-      "services": ["wash"]
+      "services": ["wash"],
+      "location": "456 Oak Ave",
+      "rating": 4.2
     },
     {
       "id": "3",
       "name": "Westside Station",
       "carTypes": ["suv", "truck"],
-      "services": ["wash", "detailing"]
+      "services": ["wash", "detailing"],
+      "location": "789 Pine Rd",
+      "rating": 4.8
     },
     {
       "id": "4",
       "name": "Eastside Station",
       "carTypes": ["sedan", "suv", "truck"],
-      "services": ["wash"]
+      "services": ["wash"],
+      "location": "321 Elm St",
+      "rating": 4.0
     }
   ]
 } 

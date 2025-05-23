@@ -37,52 +37,74 @@ const initialState: BookingState = {
 
 // Create reducer
 function bookingReducer(state: BookingState, action: BookingAction): BookingState {
+  console.log('BookingReducer action:', action)
+  console.log('Previous state:', state)
+
+  let newState: BookingState
+
   switch (action.type) {
     case 'SELECT_VEHICLE':
-      return {
+      console.log('Selecting vehicle:', action.payload)
+      newState = {
         ...state,
         selectedVehicle: action.payload,
         selectedStation: null,
         timeSlot: null,
       }
+      break
     case 'SELECT_STATION':
-      return {
+      console.log('Selecting station:', action.payload)
+      newState = {
         ...state,
         selectedStation: action.payload,
         timeSlot: null,
       }
+      break
     case 'SELECT_SERVICE':
-      return {
+      console.log('Selecting service:', action.payload)
+      newState = {
         ...state,
         selectedService: action.payload,
       }
+      break
     case 'SET_STATIONS':
-      return {
+      newState = {
         ...state,
         stations: action.payload,
       }
+      break
     case 'SET_TIME_SLOT':
-      return {
+      console.log('Selecting time slot:', action.payload)
+      newState = {
         ...state,
         timeSlot: action.payload,
       }
+      break
     case 'BOOK_SLOT_SUCCESS':
-      return {
+      console.log('Booking success - updating state')
+      newState = {
         ...state,
         bookingStatus: 'success',
         error: null,
       }
+      break
     case 'BOOK_SLOT_ERROR':
-      return {
+      newState = {
         ...state,
         bookingStatus: 'error',
         error: action.payload,
       }
+      break
     case 'RESET_BOOKING':
-      return initialState
+      console.log('Resetting booking')
+      newState = initialState
+      break
     default:
-      return state
+      newState = state
   }
+
+  console.log('New state:', newState)
+  return newState
 }
 
 // Create context
@@ -100,6 +122,8 @@ interface BookingProviderProps {
 
 export function BookingProvider({ children }: BookingProviderProps) {
   const [state, dispatch] = useReducer(bookingReducer, initialState)
+
+  console.log('BookingProvider state:', state)
 
   return (
     <BookingContext.Provider value={{ state, dispatch }}>

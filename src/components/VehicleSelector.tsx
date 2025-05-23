@@ -1,39 +1,39 @@
 import { useBooking } from '../context/BookingContext'
 import type { CarType } from '../types'
+import { Button } from './Button'
 
 const carTypes: CarType[] = ['sedan', 'suv', 'truck']
 
 export function VehicleSelector() {
   const { state, dispatch } = useBooking()
-  const selectedVehicle = state.selectedVehicle
+  const { selectedVehicle } = state
+
+  console.log('VehicleSelector rendered:', { selectedVehicle })
 
   return (
-    <div className="space-y-2">
-      <label className="block text-sm font-medium text-gray-700">
-        Select Your Vehicle Type
-      </label>
-      <div className="grid grid-cols-3 gap-2">
+    <div className="space-y-4">
+      <h2 className="text-lg font-semibold">Select Your Vehicle Type</h2>
+      <div className="grid grid-cols-3 gap-4">
         {carTypes.map((type) => (
-          <button
+          <Button
             key={type}
-            onClick={() => dispatch({ 
-              type: 'SELECT_VEHICLE', 
-              payload: { 
-                id: 'temp', // This will be replaced with actual vehicle data
-                type,
-                model: 'Default Model',
-                licensePlate: 'TEMP123'
-              }
-            })}
-            className={`px-4 py-2 text-sm font-medium rounded-md transition-colors
-              ${
-                selectedVehicle?.type === type
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
-              }`}
+            variant={selectedVehicle?.type === type ? 'secondary' : 'primary'}
+            onClick={() => {
+              console.log('Vehicle type selected:', type)
+              dispatch({
+                type: 'SELECT_VEHICLE',
+                payload: {
+                  id: `temp-${type}`,
+                  type,
+                  model: `${type.charAt(0).toUpperCase() + type.slice(1)} Model`,
+                  licensePlate: 'TEMP-123'
+                }
+              })
+            }}
+            className="w-full"
           >
-            {type.toUpperCase()}
-          </button>
+            {type.charAt(0).toUpperCase() + type.slice(1)}
+          </Button>
         ))}
       </div>
     </div>

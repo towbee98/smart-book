@@ -12,7 +12,7 @@ export function TimeSlotSelector() {
   const [timeSlots, setTimeSlots] = useState<TimeSlot[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-
+  const today = new Date()
   useEffect(() => {
     if (state.selectedStation) {
       setLoading(true)
@@ -103,17 +103,20 @@ export function TimeSlotSelector() {
             style={{ animationDelay: `${index * 50}ms` }}
           >
             <div className="text-center">
-              <div className="font-medium">
-                {new Date(slot.startTime).toLocaleTimeString()} - {new Date(slot.endTime).toLocaleTimeString()}
+              <div className="font-medium text-gray-800">
+                {new Date(`${today.toISOString().split("T")[0]}T${slot.startTime}`).toLocaleTimeString()} - {new Date(`${today.toISOString().split("T")[0]}T${slot.endTime}`).toLocaleTimeString()}
               </div>
-              <div className="text-sm text-gray-600 mt-1">${slot.price}</div>
+              <div className="text-sm text-blue-600 font-semibold mt-1">${slot.price}</div>
               <Button
-                variant={state.timeSlot?.id === slot.id ? 'primary' : 'secondary'}
+                variant={state.timeSlot?.id === slot.id ? 'secondary' : 'primary'}
                 size="sm"
                 className="mt-3 w-full"
                 onClick={() => {
+                  console.log('Time slot selected:', slot)
+                  console.log('Current booking status:', state.bookingStatus)
                   dispatch({ type: 'SET_TIME_SLOT', payload: slot })
                   dispatch({ type: 'BOOK_SLOT_SUCCESS' })
+                  console.log('Actions dispatched')
                 }}
               >
                 {state.timeSlot?.id === slot.id ? 'Selected' : 'Book Now'}

@@ -5,7 +5,7 @@ import { EmptyState } from './EmptyState'
 export function BookingSuccess() {
   const { state, dispatch } = useBooking()
   const { selectedVehicle, selectedService, selectedStation, timeSlot } = state
-
+  const today = new Date()
   return (
     <div className="max-w-2xl mx-auto p-4 sm:p-6 md:p-8">
       <EmptyState
@@ -19,26 +19,26 @@ export function BookingSuccess() {
       />
 
       <div className="mt-8 bg-white rounded-lg shadow-sm p-6 space-y-4">
-        <h2 className="text-lg font-semibold">Booking Details</h2>
-        <div className="space-y-2">
+        <h2 className="text-lg font-semibold text-gray-800">Booking Details</h2>
+        <div className="space-y-3">
           <div className="flex justify-between">
             <span className="text-gray-600">Vehicle:</span>
-            <span className="font-medium">{selectedVehicle?.type}</span>
+            <span className="font-medium text-gray-800">{selectedVehicle?.type}</span>
           </div>
           <div className="flex justify-between">
             <span className="text-gray-600">Service:</span>
-            <span className="font-medium">{selectedService}</span>
+            <span className="font-medium text-gray-800">{selectedService}</span>
           </div>
           <div className="flex justify-between">
             <span className="text-gray-600">Station:</span>
-            <span className="font-medium">{selectedStation}</span>
+            <span className="font-medium text-gray-800">{selectedStation}</span>
           </div>
           <div className="flex justify-between">
             <span className="text-gray-600">Time Slot:</span>
-            <span className="font-medium">
+            <span className="font-medium text-gray-800">
               {timeSlot && (
                 <>
-                  {new Date(timeSlot.startTime).toLocaleTimeString()} - {new Date(timeSlot.endTime).toLocaleTimeString()}
+                  {new Date(`${today.toISOString().split("T")[0]}T${timeSlot.startTime}`).toLocaleTimeString()} - {new Date(`${today.toISOString().split("T")[0]}T${timeSlot.endTime}`).toLocaleTimeString()}
                 </>
               )}
             </span>

@@ -8,6 +8,35 @@ import { Skeleton } from './Skeleton'
 export function StationSelector() {
   const { state, dispatch } = useBooking()
   const { data: stations, loading, error } = useStations()
+  const { selectedVehicle, selectedService } = state
+
+  if (!selectedVehicle) {
+    return (
+      <EmptyState
+        title="Select a Vehicle First"
+        description="Please select a vehicle type to view available stations."
+        icon={
+          <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+          </svg>
+        }
+      />
+    )
+  }
+
+  if (!selectedService) {
+    return (
+      <EmptyState
+        title="Select a Service First"
+        description="Please select a service to view available stations."
+        icon={
+          <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        }
+      />
+    )
+  }
 
   if (loading) {
     return (
@@ -41,7 +70,7 @@ export function StationSelector() {
     return (
       <EmptyState
         title="No Stations Available"
-        description="No stations are available for the selected service."
+        description="No stations are available for the selected vehicle type and service."
         icon={
           <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
@@ -71,11 +100,11 @@ export function StationSelector() {
           >
             <div className="flex justify-between items-start">
               <div>
-                <h3 className="font-medium text-base">{station.name}</h3>
+                <h3 className="font-medium text-base text-black">{station.name}</h3>
                 <p className="text-sm text-gray-600">{station.location}</p>
               </div>
               <Button
-                variant={state.selectedStation === station.id ? 'primary' : 'secondary'}
+                variant={state.selectedStation === station.id ? 'secondary' : 'primary'}
                 size="sm"
                 onClick={() => dispatch({ type: 'SELECT_STATION', payload: station.id })}
               >

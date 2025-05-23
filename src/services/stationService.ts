@@ -30,6 +30,7 @@ export async function getFilteredStations(
 ): Promise<Station[]> {
   try {
     const response = await fetch('/api/stations')
+    
     const stations: Station[] = await response.json()
     return filterStations(stations, carType, service)
   } catch (error) {

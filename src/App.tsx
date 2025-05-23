@@ -1,13 +1,10 @@
 import { useEffect } from 'react'
 import { useBooking } from './context/BookingContext'
-import { VehicleSelector } from './components/VehicleSelector'
-import { StationSelector } from './components/StationSelector'
-import { TimeSlotSelector } from './components/TimeSlotSelector'
-
+import { BookingPage } from './pages/BookingPage'
 import './App.css'
 
 function App() {
-  const { state, dispatch } = useBooking()
+  const { dispatch } = useBooking()
 
   useEffect(() => {
     console.log('Fetching stations...')
@@ -26,18 +23,15 @@ function App() {
   }, [dispatch])
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
-      <h1 className="text-3xl font-bold text-blue-600 mb-8">
+    <div className="min-h-screen bg-gray-50 p-8">
+      <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">
         Smart Booking Interface
       </h1>
       
-      <div className="max-w-2xl mx-auto space-y-8">
-        <VehicleSelector />
-        <StationSelector />
-        <TimeSlotSelector />
-      </div>
+      <BookingPage />
     </div>
   )
 }
 
 export default App
+ 

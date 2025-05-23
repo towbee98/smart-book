@@ -10,6 +10,7 @@ export async function getTimeSlotsByStationId(stationId: string): Promise<TimeSl
     const response = await fetch(`/api/stations/${stationId}/timeSlots`)
     if (!response.ok) throw new Error('Failed to fetch time slots')
     const slots: TimeSlot[] = await response.json()
+    console.log(slots)
     return slots
   } catch (error) {
     console.error('Error fetching time slots:', error)
