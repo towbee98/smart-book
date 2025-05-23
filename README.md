@@ -1,54 +1,164 @@
-# React + TypeScript + Vite
+# Smart Booking System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, user-friendly booking system for vehicle services built with React and TypeScript.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Multi-step Booking Process**
+  - Vehicle Type Selection
+  - Service Selection
+  - Station Selection
+  - Time Slot Booking
+- **Responsive Design**
+  - Mobile-first approach
+  - Clean and intuitive interface
+  - Smooth animations and transitions
+- **Real-time Availability**
+  - Dynamic time slot management
+  - Station capacity tracking
+  - Service-specific scheduling
 
-## Expanding the ESLint configuration
+## Design Choices
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### UI Components
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+1. **Button Component**
+   - Variants: primary (white/black), secondary (black/white), success, danger
+   - Consistent styling with hover states
+   - Support for loading states and disabled conditions
+   - Responsive sizing (sm, md, lg)
+
+2. **EmptyState Component**
+   - Clear messaging for empty states
+   - Customizable icons and actions
+   - Consistent styling across the application
+
+3. **Loading States**
+   - Skeleton loaders for content
+   - Spinner for button loading states
+   - Smooth transitions between states
+
+### Color Scheme
+
+- **Primary Colors**
+  - Black and White for buttons (selected/unselected states)
+  - Blue accents for interactive elements
+  - Gray scales for text hierarchy
+
+- **Text Colors**
+  - Black for primary headings and important information
+  - Gray-600 for secondary text
+  - Blue for interactive elements and prices
+
+### State Management
+
+- **Context-based State Management**
+  - Centralized booking state
+  - Clear action types and reducers
+  - Predictable state updates
+
+### Component Architecture
+
+1. **BookingPage**
+   - Main container component
+   - Manages the booking flow
+   - Handles success/error states
+
+2. **Selector Components**
+   - VehicleSelector
+   - ServiceSelector
+   - StationSelector
+   - TimeSlotSelector
+   - Each with consistent styling and behavior
+
+3. **Success Component**
+   - Clear confirmation message
+   - Detailed booking summary
+   - Option to start new booking
+
+## Technical Decisions
+
+1. **TypeScript**
+   - Strong typing for better development experience
+   - Interface definitions for all data structures
+   - Type safety for API responses
+
+2. **Tailwind CSS**
+   - Utility-first approach
+   - Consistent spacing and sizing
+   - Responsive design utilities
+
+3. **Component Structure**
+   - Reusable components
+   - Clear separation of concerns
+   - Consistent prop interfaces
+
+4. **Error Handling**
+   - Graceful error states
+   - User-friendly error messages
+   - Retry mechanisms
+
+## Getting Started
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+## Project Structure
+
+```
+smart-booking/
+├── src/
+│   ├── components/
+│   │   ├── Button.tsx
+│   │   ├── EmptyState.tsx
+│   │   ├── Loader.tsx
+│   │   ├── Skeleton.tsx
+│   │   ├── VehicleSelector.tsx
+│   │   ├── ServiceSelector.tsx
+│   │   ├── StationSelector.tsx
+│   │   ├── TimeSlotSelector.tsx
+│   │   └── BookingSuccess.tsx
+│   ├── context/
+│   │   └── BookingContext.tsx
+│   ├── hooks/
+│   │   └── useStations.ts
+│   ├── services/
+│   │   ├── stationService.ts
+│   │   └── slotService.ts
+│   ├── types/
+│   │   └── index.ts
+│   └── pages/
+│       └── BookingPage.tsx
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Future Improvements
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. **Enhanced Error Handling**
+   - More detailed error messages
+   - Better error recovery options
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+2. **Performance Optimizations**
+   - Code splitting
+   - Lazy loading of components
+   - Memoization of expensive computations
+
+3. **Additional Features**
+   - User authentication
+   - Booking history
+   - Service reviews and ratings
+   - Payment integration
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a new Pull Request 
