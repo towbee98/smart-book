@@ -19,6 +19,7 @@ export interface Station {
 
 export interface TimeSlot {
   id: string
+  stationId: string
   startTime: string
   endTime: string
   isAvailable: boolean

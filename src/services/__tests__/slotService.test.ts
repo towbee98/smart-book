@@ -3,8 +3,8 @@ import type { TimeSlot } from '../../types'
 
 describe('slotService', () => {
   const mockSlots: TimeSlot[] = [
-    { id: 'a', stationId: '1', startTime: '09:00', endTime: '10:00', isAvailable: true },
-    { id: 'b', stationId: '1', startTime: '10:00', endTime: '11:00', isAvailable: false }
+    { id: 'a', stationId: '1', startTime: '09:00', endTime: '10:00', isAvailable: true, price: 50 },
+    { id: 'b', stationId: '1', startTime: '10:00', endTime: '11:00', isAvailable: false, price: 50 }
   ]
 
   beforeEach(() => {
