@@ -9,7 +9,7 @@ import { API_ENDPOINTS } from '../config/env'
 export async function getTimeSlotsByStationId(stationId: string): Promise<TimeSlot[]> {
   try {
     // First get all time slots
-    const response = await fetch('http://localhost:3001/timeSlots')
+    const response = await fetch(API_ENDPOINTS.timeSlots)
     if (!response.ok) throw new Error('Failed to fetch time slots')
     const data = await response.json()
     // Get the time slots for the specific station
